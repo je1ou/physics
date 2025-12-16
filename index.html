@@ -832,7 +832,7 @@
 
                 <section class="image-slide">
                     <h3>Когда физик готовит</h3>
-                    <img src="https://depositphotos.com/ru/photo/3d-funny-cartoon-italian-pizza-chef-character-sings-into-the-microphone-289802372.html" 
+                    <img src="https://i.imgur.com/hk1vIiU.jpeg" 
                          alt="Физика в кулинарии" class="fun-image">
                     <p class="caption">"Измеряю температуру воды с точностью до кельвина перед тем, как заварить чай"</p>
                     <div class="hint">Температура заваривания зелёного чая: 70-80°C</div>
@@ -863,7 +863,7 @@
                 </section>
             </section>
 
-            <!-- ЗАКЛЮЧИТЕЛЬНЫЙ СЛАЙД -->
+            <!-- заключительный -->
             <section>
                 <h2>Спасибо за внимание!</h2>
                 <div class="author-info">
@@ -892,11 +892,11 @@
         </div>
     </div>
 
-    <!-- Подключение библиотек -->
+    <!-- подключение библиотек -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     
     <script>
-        // Инициализация Reveal.js
+        // иниц Reveal.js
         Reveal.initialize({
             hash: true,
             transition: 'slide',
@@ -911,7 +911,7 @@
             slideNumber: true
         });
         
-        // Обновляем индикатор прогресса
+        // обновляем индикатор прогресса
         function updateProgress() {
             const totalSlides = document.querySelectorAll('.slides section').length;
             const currentSlide = Reveal.getState().indexh + 1;
@@ -922,7 +922,7 @@
         Reveal.addEventListener('slidechanged', updateProgress);
         Reveal.addEventListener('ready', updateProgress);
         
-        // Конвертер температуры
+        // конв температуры
         function convertTemperature() {
             const input = parseFloat(document.getElementById('temp-input').value);
             const from = document.getElementById('temp-from').value;
@@ -956,7 +956,7 @@
         document.getElementById('temp-input')?.addEventListener('input', convertTemperature);
         document.getElementById('temp-from')?.addEventListener('change', convertTemperature);
         
-        // Конвертер длины
+        // конв длины
         function convertLength() {
             const input = parseFloat(document.getElementById('length-input').value);
             const from = document.getElementById('length-from').value;
@@ -992,7 +992,7 @@
         document.getElementById('length-input')?.addEventListener('input', convertLength);
         document.getElementById('length-from')?.addEventListener('change', convertLength);
         
-        // Конвертер массы
+        // конв массы
         function convertMass() {
             const input = parseFloat(document.getElementById('mass-input').value);
             const from = document.getElementById('mass-from').value;
@@ -1028,7 +1028,7 @@
         document.getElementById('mass-input')?.addEventListener('input', convertMass);
         document.getElementById('mass-from')?.addEventListener('change', convertMass);
         
-        // Конвертер скорости
+        // конв скорости
         function convertSpeed() {
             const input = parseFloat(document.getElementById('speed-input').value);
             const from = document.getElementById('speed-from').value;
@@ -1064,9 +1064,9 @@
         document.getElementById('speed-input')?.addEventListener('input', convertSpeed);
         document.getElementById('speed-from')?.addEventListener('change', convertSpeed);
         
-        // Инициализация конвертеров при загрузке
+        // иниц конвертеров при загрузке
         window.addEventListener('load', function() {
-            // Инициализируем все конвертеры
+            // иниц все конвертеры
             [convertTemperature, convertLength, convertMass, convertSpeed].forEach(func => {
                 try {
                     func();
