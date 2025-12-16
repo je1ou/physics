@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физика: Единицы измерения и конвертация</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/simple.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Кастомные стили -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        
+        .reveal {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .reveal .slides {
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            text-align: left;
+        }
+        
+        .reveal .slides section {
+            padding: 20px 40px;
+            width: 100%;
+            height: 100%;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        
+        /* Уменьшаем размеры текста */
+        .reveal h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .reveal h2 {
+            font-size: 1.6rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.7rem;
+        }
+        
+        .reveal h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .reveal p, .reveal li {
+            font-size: 1rem;
+            line-height: 1.3;
+            margin-bottom: 0.4rem;
+        }
+        
+        .reveal ul, .reveal ol {
+            margin-left: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        
+        /* Стили для слайда с содержанием */
+        .toc-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .toc-slide h2 {
+            color: white;
+            text-align: center;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .toc-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--success-color);
+            color: var(--primary-color);
+        }
+        
+        .toc-number {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+        
+        /* Примеры задач */
+        .task-example {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .task-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .task-solution {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #e8f4fc;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 4px 0;
+        }
+        
+        /* Конвертеры */
+        .converter-section {
+            margin-top: 15px;
+        }
+        
+        .converter {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            margin: 10px 0;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .input-group input, .input-group select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+        
+        .convert-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: background 0.3s;
+        }
+        
+        .convert-btn:hover {
+            background: #2980b9;
+        }
+        
+        .results {
+            margin-top: 10px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        /* Изображения */
+        .image-slide {
+            text-align: center;
+        }
+        
+        .fun-image {
+            max-width: 80%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 3px solid white;
+        }
+        
+        .caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        /* Информация об авторе */
+        .author-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        /* Прогресс бар */
+        .progress {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--secondary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .reveal .slides section {
+                padding: 15px 20px;
+            }
+            
+            .reveal h1 {
+                font-size: 1.6rem;
+            }
+            
+            .reveal h2 {
+                font-size: 1.3rem;
+            }
+            
+            .reveal h3 {
+                font-size: 1.1rem;
+            }
+            
+            .reveal p, .reveal li {
+                font-size: 0.9rem;
+            }
+            
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .fun-image {
+                max-width: 95%;
+                max-height: 250px;
+            }
+        }
+        
+        /* Убираем полосы прокрутки */
+        .reveal .slides section::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .reveal .slides section {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Подсказки */
+        .hint {
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+            <!-- СЛАЙД 1: ТИТУЛЬНЫЙ -->
+            <section>
+                <div class="slide-content">
+                    <h1>Физика: Единицы измерения и конвертация</h1>
+                    <h2>Учебная презентация</h2>
+                    <div class="author-info">
+                        <p><i class="fas fa-user"></i> <strong>Ярышина Даниэла Павловна</strong></p>
+                        <p><i class="fas fa-users"></i> Группа: Микн 4 курс</p>
+                        <p><i class="fas fa-envelope"></i> Email: ultimate2588@gmail.com</p>
+                    </div>
+                    <p class="hint">Используйте стрелки на клавиатуре для навигации</p>
+                </div>
+            </section>
+
+            <!-- СЛАЙД 2: СОДЕРЖАНИЕ -->
+            <section class="toc-slide">
+                <div class="slide-content">
+                    <h2>Содержание презентации</h2>
+                    <ul class="toc-list">
+                        <li class="toc-item">
+                            <span class="toc-number">1</span>
+                            Единицы измерения
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">2</span>
+                            Примеры задач
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">3</span>
+                            Конвертер температуры
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">4</span>
+                            Конвертер длины
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">5</span>
+                            Конвертер массы
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">6</span>
+                            Конвертер скорости
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">7</span>
+                            Весёлые картинки
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">8</span>
+                            Заключение
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ 1: ЕДИНИЦЫ ИЗМЕРЕНИЯ -->
+            <section>
+                <section>
+                    <h2>Единицы измерения</h2>
+                    <p>Основные физические величины и их единицы</p>
+                    <ul>
+                        <li><strong>Скорость:</strong> м/с, км/ч, миль/ч, узлы</li>
+                        <li><strong>Температура:</strong> °C, K, °F</li>
+                        <li><strong>Длина:</strong> м, км, см, мили, футы</li>
+                        <li><strong>Масса:</strong> кг, г, т, фунты, унции</li>
+                        <li><strong>Площадь:</strong> м², км², га, акры</li>
+                        <li><strong>Объём:</strong> м³, л, мл, галлоны</li>
+                    </ul>
+                </section>
+
+                <!-- СКОРОСТЬ -->
+                <section>
+                    <h3>Единицы скорости</h3>
+                    <ul>
+                        <li><strong>м/с</strong> (метр в секунду) - базовая единица СИ</li>
+                        <li><strong>км/ч</strong> (километр в час) - транспорт, погода</li>
+                        <li><strong>миль/ч</strong> (mph) - США, Великобритания</li>
+                        <li><strong>узлы</strong> (kt) - морская и авиационная навигация</li>
+                    </ul>
+                    <div class="formula">1 км/ч = 0.2778 м/с</div>
+                    <div class="formula">1 миль/ч = 1.609 км/ч</div>
+                </section>
+
+                <!-- ТЕМПЕРАТУРА -->
+                <section>
+                    <h3>Единицы температуры</h3>
+                    <ul>
+                        <li><strong>°C</strong> (градус Цельсия) - бытовые измерения</li>
+                        <li><strong>K</strong> (кельвин) - научные расчёты</li>
+                        <li><strong>°F</strong> (градус Фаренгейта) - США, бытовые приборы</li>
+                    </ul>
+                    <div class="formula">K = °C + 273.15</div>
+                    <div class="formula">°F = °C × 9/5 + 32</div>
+                </section>
+
+                <!-- ДЛИНА -->
+                <section>
+                    <h3>Единицы длины</h3>
+                    <ul>
+                        <li><strong>м</strong> (метр) - базовая единица СИ</li>
+                        <li><strong>км</strong> (километр) - географические расстояния</li>
+                        <li><strong>см</strong> (сантиметр) - бытовые измерения</li>
+                        <li><strong>миля</strong> (1 миля = 1609.34 м)</li>
+                        <li><strong>фут</strong> (1 фут = 0.3048 м)</li>
+                    </ul>
+                </section>
+
+                <!-- МАССА -->
+                <section>
+                    <h3>Единицы массы</h3>
+                    <ul>
+                        <li><strong>кг</strong> (килограмм) - базовая единица СИ</li>
+                        <li><strong>г</strong> (грамм) - кулинария, химия</li>
+                        <li><strong>т</strong> (тонна) - промышленность</li>
+                        <li><strong>фунт</strong> (1 lb ≈ 0.4536 кг)</li>
+                        <li><strong>унция</strong> (1 oz ≈ 28.35 г)</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 2: ПРИМЕРЫ ЗАДАЧ -->
+            <section>
+                <section>
+                    <h2>Примеры задач на конвертацию</h2>
+                    <p>Практические задачи для разминки</p>
+                </section>
+
+                <!-- Задача 1: Температура -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-thermometer-half"></i>
+                            Задача 1: Конвертация температуры
+                        </div>
+                        <p><strong>Условие:</strong> В прогнозе погоды указана температура 77°F. 
+                        Какая это температура в градусах Цельсия и Кельвинах?</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. Из °F в °C: °C = (°F - 32) × 5/9</p>
+                            <p>°C = (77 - 32) × 5/9 = 45 × 5/9 = 25°C</p>
+                            <p>2. Из °C в K: K = °C + 273.15</p>
+                            <p>K = 25 + 273.15 = 298.15 K</p>
+                            <p><strong>Ответ:</strong> 25°C или 298.15 K</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Задача 2: Длина -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-ruler"></i>
+                            Задача 2: Конвертация длины
+                        </div>
+                        <p><strong>Условие:</strong> Беговая дорожка стадиона имеет длину 400 метров. 
+                        Сколько это километров, миль и футов?</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. Метры в километры: км = м / 1000</p>
+                            <p>400 м = 400 / 1000 = 0.4 км</p>
+                            <p>2. Метры в мили: мили = м / 1609.34</p>
+                            <p>400 м = 400 / 1609.34 ≈ 0.249 мили</p>
+                            <p>3. Метры в футы: футы = м / 0.3048</p>
+                            <p>400 м = 400 / 0.3048 ≈ 1312.34 фута</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Задача 3: Масса -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-weight"></i>
+                            Задача 3: Конвертация массы
+                        </div>
+                        <p><strong>Условие:</strong> На кухонных весах взвесили 2 фунта муки. 
+                        Сколько это килограммов и граммов?</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. Фунты в килограммы: кг = фунты × 0.4536</p>
+                            <p>2 фунта = 2 × 0.4536 = 0.9072 кг</p>
+                            <p>2. Килограммы в граммы: г = кг × 1000</p>
+                            <p>0.9072 кг = 0.9072 × 1000 = 907.2 г</p>
+                            <p><strong>Ответ:</strong> ≈ 0.91 кг или 907 г</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Задача 4: Скорость -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Задача 4: Конвертация скорости
+                        </div>
+                        <p><strong>Условие:</strong> Поезд движется со скоростью 180 км/ч. 
+                        Выразите эту скорость в м/с и миль/ч.</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. км/ч в м/с: м/с = км/ч ÷ 3.6</p>
+                            <p>180 км/ч = 180 ÷ 3.6 = 50 м/с</p>
+                            <p>2. км/ч в миль/ч: миль/ч = км/ч ÷ 1.609</p>
+                            <p>180 км/ч = 180 ÷ 1.609 ≈ 111.85 миль/ч</p>
+                            <p><strong>Ответ:</strong> 50 м/с или ≈112 миль/ч</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Задача 5: Площадь -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-border-all"></i>
+                            Задача 5: Конвертация площади
+                        </div>
+                        <p><strong>Условие:</strong> Площадь футбольного поля 0.7 га. 
+                        Сколько это квадратных метров и акров?</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. Гектары в м²: м² = га × 10000</p>
+                            <p>0.7 га = 0.7 × 10000 = 7000 м²</p>
+                            <p>2. Гектары в акры: акры = га × 2.471</p>
+                            <p>0.7 га = 0.7 × 2.471 ≈ 1.73 акра</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Задача 6: Объём -->
+                <section>
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-wine-bottle"></i>
+                            Задача 6: Конвертация объёма
+                        </div>
+                        <p><strong>Условие:</strong> Бутылка воды содержит 1.5 литра. 
+                        Сколько это миллилитров, кубических метров и галлонов?</p>
+                        
+                        <div class="task-solution">
+                            <p><strong>Решение:</strong></p>
+                            <p>1. Литры в мл: мл = л × 1000</p>
+                            <p>1.5 л = 1.5 × 1000 = 1500 мл</p>
+                            <p>2. Литры в м³: м³ = л × 0.001</p>
+                            <p>1.5 л = 1.5 × 0.001 = 0.0015 м³</p>
+                            <p>3. Литры в галлоны: галлоны = л ÷ 3.785</p>
+                            <p>1.5 л = 1.5 ÷ 3.785 ≈ 0.396 галлона</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 3: КОНВЕРТЕР ТЕМПЕРАТУРЫ -->
+            <section>
+                <section>
+                    <h2>Конвертер температуры</h2>
+                    <p>Перевод между градусами Цельсия, Фаренгейта и Кельвина</p>
+                    
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Попробуйте решить:
+                        </div>
+                        <p>Нормальная температура тела человека 36.6°C. 
+                        Сколько это в градусах Фаренгейта и Кельвинах?</p>
+                        <p class="hint">Используйте конвертер ниже для проверки</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Конвертер температуры</h3>
+                    <div class="converter">
+                        <div class="input-group">
+                            <input type="number" id="temp-input" placeholder="Введите значение" step="0.1" value="20">
+                            <select id="temp-from">
+                                <option value="c">°C (Цельсий)</option>
+                                <option value="f">°F (Фаренгейта)</option>
+                                <option value="k">K (Кельвин)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="temp-convert" class="convert-btn">
+                            <i class="fas fa-sync-alt"></i> Конвертировать
+                        </button>
+                        
+                        <div class="results">
+                            <div class="result-item">
+                                <span>°C:</span>
+                                <span id="temp-c">20.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>°F:</span>
+                                <span id="temp-f">68.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>K:</span>
+                                <span id="temp-k">293.15</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-example" style="margin-top: 20px;">
+                        <p><strong>Интересный факт:</strong></p>
+                        <p>Абсолютный ноль (0 K) равен -273.15°C или -459.67°F — это самая низкая возможная температура.</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 4: КОНВЕРТЕР ДЛИНЫ -->
+            <section>
+                <section>
+                    <h2>Конвертер длины</h2>
+                    <p>Перевод между метрами, километрами, милями и футами</p>
+                    
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Попробуйте решить:
+                        </div>
+                        <p>Эверест — высочайшая гора мира (8848 м). 
+                        Сколько это километров и миль?</p>
+                        <p class="hint">Используйте конвертер ниже для проверки</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Конвертер длины</h3>
+                    <div class="converter">
+                        <div class="input-group">
+                            <input type="number" id="length-input" placeholder="Введите значение" step="0.01" value="100">
+                            <select id="length-from">
+                                <option value="m">Метры (м)</option>
+                                <option value="km">Километры (км)</option>
+                                <option value="mile">Мили</option>
+                                <option value="ft">Футы (ft)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="length-convert" class="convert-btn">
+                            <i class="fas fa-sync-alt"></i> Конвертировать
+                        </button>
+                        
+                        <div class="results">
+                            <div class="result-item">
+                                <span>Метры:</span>
+                                <span id="length-m">100.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Километры:</span>
+                                <span id="length-km">0.10</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Мили:</span>
+                                <span id="length-mile">0.06</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Футы:</span>
+                                <span id="length-ft">328.08</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 5: КОНВЕРТЕР МАССЫ -->
+            <section>
+                <section>
+                    <h2>Конвертер массы</h2>
+                    <p>Перевод между килограммами, граммами, фунтами и унциями</p>
+                    
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Попробуйте решить:
+                        </div>
+                        <p>Золотой слиток стандартного размера весит 1 кг. 
+                        Сколько это фунтов и унций?</p>
+                        <p class="hint">Используйте конвертер ниже для проверки</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Конвертер массы</h3>
+                    <div class="converter">
+                        <div class="input-group">
+                            <input type="number" id="mass-input" placeholder="Введите значение" step="0.01" value="1">
+                            <select id="mass-from">
+                                <option value="kg">Килограммы (кг)</option>
+                                <option value="g">Граммы (г)</option>
+                                <option value="lb">Фунты (lb)</option>
+                                <option value="oz">Унции (oz)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="mass-convert" class="convert-btn">
+                            <i class="fas fa-sync-alt"></i> Конвертировать
+                        </button>
+                        
+                        <div class="results">
+                            <div class="result-item">
+                                <span>Килограммы:</span>
+                                <span id="mass-kg">1.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Граммы:</span>
+                                <span id="mass-g">1000.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Фунты:</span>
+                                <span id="mass-lb">2.20</span>
+                            </div>
+                            <div class="result-item">
+                                <span>Унции:</span>
+                                <span id="mass-oz">35.27</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 6: КОНВЕРТЕР СКОРОСТИ -->
+            <section>
+                <section>
+                    <h2>Конвертер скорости</h2>
+                    <p>Перевод между м/с, км/ч, миль/ч и узлами</p>
+                    
+                    <div class="task-example">
+                        <div class="task-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Попробуйте решить:
+                        </div>
+                        <p>Скорость звука в воздухе примерно 340 м/с. 
+                        Сколько это км/ч и миль/ч?</p>
+                        <p class="hint">Используйте конвертер ниже для проверки</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Конвертер скорости</h3>
+                    <div class="converter">
+                        <div class="input-group">
+                            <input type="number" id="speed-input" placeholder="Введите значение" step="0.1" value="10">
+                            <select id="speed-from">
+                                <option value="ms">м/с</option>
+                                <option value="kmh">км/ч</option>
+                                <option value="mph">миль/ч</option>
+                                <option value="knot">узлы</option>
+                            </select>
+                        </div>
+                        
+                        <button id="speed-convert" class="convert-btn">
+                            <i class="fas fa-sync-alt"></i> Конвертировать
+                        </button>
+                        
+                        <div class="results">
+                            <div class="result-item">
+                                <span>м/с:</span>
+                                <span id="speed-ms">10.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>км/ч:</span>
+                                <span id="speed-kmh">36.00</span>
+                            </div>
+                            <div class="result-item">
+                                <span>миль/ч:</span>
+                                <span id="speed-mph">22.37</span>
+                            </div>
+                            <div class="result-item">
+                                <span>узлы:</span>
+                                <span id="speed-knot">19.44</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-example" style="margin-top: 20px;">
+                        <p><strong>Для справки:</strong></p>
+                        <p>1 узел = 1 морская миля в час = 1.852 км/ч</p>
+                        <p>Используется в морской и авиационной навигации</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- РАЗДЕЛ 7: ВЕСЁЛЫЕ КАРТИНКИ -->
+            <section>
+                <section class="image-slide">
+                    <h2>Физика с юмором</h2>
+                    <p>Весёлые иллюстрации на тему физики</p>
+                </section>
+
+                <section class="image-slide">
+                    <h3>Когда физик готовит</h3>
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&auto=format&fit=crop" 
+                         alt="Физика в кулинарии" class="fun-image">
+                    <p class="caption">"Измеряю температуру воды с точностью до кельвина перед тем, как заварить чай"</p>
+                    <div class="hint">Температура заваривания зелёного чая: 70-80°C</div>
+                </section>
+
+                <section class="image-slide">
+                    <h3>Кот Шрёдингера</h3>
+                    <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba0?w=600&auto=format&fit=crop" 
+                         alt="Кот и физика" class="fun-image">
+                    <p class="caption">"Я одновременно и в коробке, и вне её. И голоден в обоих состояниях!"</p>
+                    <div class="hint">Мысленный эксперимент квантовой физики</div>
+                </section>
+
+                <section class="image-slide">
+                    <h3>Физик на пляже</h3>
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&auto=format&fit=crop" 
+                         alt="Физик отдыхает" class="fun-image">
+                    <p class="caption">"Рассчитываю оптимальную траекторию и угол вхождения в воду"</p>
+                    <div class="hint">Угол отражения равен углу падения</div>
+                </section>
+
+                <section class="image-slide">
+                    <h3>Эйнштейн сегодня</h3>
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop" 
+                         alt="Эйнштейн" class="fun-image">
+                    <p class="caption">"E=mc² — формула для расчёта энергии, когда нужно срочно выпить кофе"</p>
+                    <div class="hint">Самое известное уравнение в физике</div>
+                </section>
+            </section>
+
+            <!-- ЗАКЛЮЧИТЕЛЬНЫЙ СЛАЙД -->
+            <section>
+                <h2>Спасибо за внимание!</h2>
+                <div class="author-info">
+                    <p><i class="fas fa-user"></i> <strong>Ярышина Даниэла Павловна</strong></p>
+                    <p><i class="fas fa-users"></i> Группа: Микн 4 курс</p>
+                    <p><i class="fas fa-envelope"></i> Email: ultimate2588@gmail.com</p>
+                </div>
+                
+                <div class="task-example" style="background: #e8f5e9;">
+                    <p><strong>Презентация включает:</strong></p>
+                    <ul>
+                        <li>6 категорий единиц измерения</li>
+                        <li>6 примеров задач с решениями</li>
+                        <li>4 интерактивных конвертера</li>
+                        <li>4 юмористические иллюстрации</li>
+                        <li>Интересные факты о физике</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="font-style: italic; color: var(--primary-color);">
+                        "Физика — это не просто формулы, это способ понимания мира вокруг нас"
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Подключение библиотек -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    
+    <script>
+        // Инициализация Reveal.js
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            width: "100%",
+            height: "100%",
+            margin: 0.04,
+            
+            controls: true,
+            progress: true,
+            center: true,
+            slideNumber: true
+        });
+        
+        // Обновляем индикатор прогресса
+        function updateProgress() {
+            const totalSlides = document.querySelectorAll('.slides section').length;
+            const currentSlide = Reveal.getState().indexh + 1;
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        Reveal.addEventListener('slidechanged', updateProgress);
+        Reveal.addEventListener('ready', updateProgress);
+        
+        // Конвертер температуры
+        function convertTemperature() {
+            const input = parseFloat(document.getElementById('temp-input').value);
+            const from = document.getElementById('temp-from').value;
+            
+            let c, f, k;
+            
+            switch(from) {
+                case 'c':
+                    c = input;
+                    f = (c * 9/5) + 32;
+                    k = c + 273.15;
+                    break;
+                case 'f':
+                    f = input;
+                    c = (f - 32) * 5/9;
+                    k = c + 273.15;
+                    break;
+                case 'k':
+                    k = input;
+                    c = k - 273.15;
+                    f = (c * 9/5) + 32;
+                    break;
+            }
+            
+            document.getElementById('temp-c').textContent = c.toFixed(2);
+            document.getElementById('temp-f').textContent = f.toFixed(2);
+            document.getElementById('temp-k').textContent = k.toFixed(2);
+        }
+        
+        document.getElementById('temp-convert')?.addEventListener('click', convertTemperature);
+        document.getElementById('temp-input')?.addEventListener('input', convertTemperature);
+        document.getElementById('temp-from')?.addEventListener('change', convertTemperature);
+        
+        // Конвертер длины
+        function convertLength() {
+            const input = parseFloat(document.getElementById('length-input').value);
+            const from = document.getElementById('length-from').value;
+            
+            let m, km, mile, ft;
+            
+            switch(from) {
+                case 'm':
+                    m = input;
+                    break;
+                case 'km':
+                    m = input * 1000;
+                    break;
+                case 'mile':
+                    m = input * 1609.34;
+                    break;
+                case 'ft':
+                    m = input * 0.3048;
+                    break;
+            }
+            
+            km = m / 1000;
+            mile = m / 1609.34;
+            ft = m / 0.3048;
+            
+            document.getElementById('length-m').textContent = m.toFixed(2);
+            document.getElementById('length-km').textContent = km.toFixed(2);
+            document.getElementById('length-mile').textContent = mile.toFixed(2);
+            document.getElementById('length-ft').textContent = ft.toFixed(2);
+        }
+        
+        document.getElementById('length-convert')?.addEventListener('click', convertLength);
+        document.getElementById('length-input')?.addEventListener('input', convertLength);
+        document.getElementById('length-from')?.addEventListener('change', convertLength);
+        
+        // Конвертер массы
+        function convertMass() {
+            const input = parseFloat(document.getElementById('mass-input').value);
+            const from = document.getElementById('mass-from').value;
+            
+            let kg, g, lb, oz;
+            
+            switch(from) {
+                case 'kg':
+                    kg = input;
+                    break;
+                case 'g':
+                    kg = input / 1000;
+                    break;
+                case 'lb':
+                    kg = input * 0.453592;
+                    break;
+                case 'oz':
+                    kg = input * 0.0283495;
+                    break;
+            }
+            
+            g = kg * 1000;
+            lb = kg / 0.453592;
+            oz = kg / 0.0283495;
+            
+            document.getElementById('mass-kg').textContent = kg.toFixed(2);
+            document.getElementById('mass-g').textContent = g.toFixed(2);
+            document.getElementById('mass-lb').textContent = lb.toFixed(2);
+            document.getElementById('mass-oz').textContent = oz.toFixed(2);
+        }
+        
+        document.getElementById('mass-convert')?.addEventListener('click', convertMass);
+        document.getElementById('mass-input')?.addEventListener('input', convertMass);
+        document.getElementById('mass-from')?.addEventListener('change', convertMass);
+        
+        // Конвертер скорости
+        function convertSpeed() {
+            const input = parseFloat(document.getElementById('speed-input').value);
+            const from = document.getElementById('speed-from').value;
+            
+            let ms, kmh, mph, knot;
+            
+            switch(from) {
+                case 'ms':
+                    ms = input;
+                    break;
+                case 'kmh':
+                    ms = input / 3.6;
+                    break;
+                case 'mph':
+                    ms = input * 0.44704;
+                    break;
+                case 'knot':
+                    ms = input * 0.514444;
+                    break;
+            }
+            
+            kmh = ms * 3.6;
+            mph = ms / 0.44704;
+            knot = ms / 0.514444;
+            
+            document.getElementById('speed-ms').textContent = ms.toFixed(2);
+            document.getElementById('speed-kmh').textContent = kmh.toFixed(2);
+            document.getElementById('speed-mph').textContent = mph.toFixed(2);
+            document.getElementById('speed-knot').textContent = knot.toFixed(2);
+        }
+        
+        document.getElementById('speed-convert')?.addEventListener('click', convertSpeed);
+        document.getElementById('speed-input')?.addEventListener('input', convertSpeed);
+        document.getElementById('speed-from')?.addEventListener('change', convertSpeed);
+        
+        // Инициализация конвертеров при загрузке
+        window.addEventListener('load', function() {
+            // Инициализируем все конвертеры
+            [convertTemperature, convertLength, convertMass, convertSpeed].forEach(func => {
+                try {
+                    func();
+                } catch(e) {
+                    console.log("Конвертер ещё не загружен:", e);
+                }
+            });
+        });
+        
+        // Автоматическое обновление конвертеров при вводе
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                const id = this.id;
+                if (id.includes('temp')) convertTemperature();
+                if (id.includes('length')) convertLength();
+                if (id.includes('mass')) convertMass();
+                if (id.includes('speed')) convertSpeed();
+            });
+        });
+        
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', function() {
+                const id = this.id;
+                if (id.includes('temp')) convertTemperature();
+                if (id.includes('length')) convertLength();
+                if (id.includes('mass')) convertMass();
+                if (id.includes('speed')) convertSpeed();
+            });
+        });
+    </script>
+</body>
+</html>
