@@ -275,6 +275,67 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+
+                /* Стили для слайдов с кодом */
+        .code-slide {
+            background: #2d2d2d !important;
+            color: #f8f8f2 !important;
+        }
+        
+        .code-slide h3 {
+            color: #66d9ef !important;
+            border-bottom: 2px solid #66d9ef;
+            padding-bottom: 10px;
+        }
+        
+        .code-container {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .code-keyword {
+            color: #f92672;
+        }
+        
+        .code-function {
+            color: #66d9ef;
+        }
+        
+        .code-string {
+            color: #a6e22e;
+        }
+        
+        .code-comment {
+            color: #75715e;
+        }
+        
+        .code-number {
+            color: #ae81ff;
+        }
+        
+        .code-operator {
+            color: #f8f8f2;
+        }
+        
+        .code-line {
+            margin-bottom: 3px;
+        }
+        
+        .code-explanation {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
         
         @media (max-width: 768px) {
             .reveal .slides section {
@@ -370,22 +431,38 @@
                         </li>
                         <li class="toc-item">
                             <span class="toc-number">4</span>
-                            Конвертер длины
+                            Код конвертера температуры
                         </li>
                         <li class="toc-item">
                             <span class="toc-number">5</span>
-                            Конвертер массы
+                            Конвертер длины
                         </li>
                         <li class="toc-item">
                             <span class="toc-number">6</span>
-                            Конвертер скорости
+                            Код конвертера длины
                         </li>
                         <li class="toc-item">
                             <span class="toc-number">7</span>
-                            Весёлые картинки
+                            Конвертер массы
                         </li>
                         <li class="toc-item">
                             <span class="toc-number">8</span>
+                            Код конвертера массы
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">9</span>
+                            Конвертер скорости
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">10</span>
+                            Код конвертера скорости
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">11</span>
+                            Весёлые картинки
+                        </li>
+                        <li class="toc-item">
+                            <span class="toc-number">12</span>
                             Заключение
                         </li>
                     </ul>
@@ -648,6 +725,50 @@
                 </section>
             </section>
 
+            <section class="code-slide">
+                <h3>JavaScript код: функция convertTemperature()</h3>
+                <div class="code-container">
+                    <div class="code-line"><span class="code-keyword">function</span> <span class="code-function">convertTemperature</span>() {</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> input = <span class="code-function">parseFloat</span>(<span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'temp-input'</span>).value);</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> from = <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'temp-from'</span>).value;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">let</span> c, f, k;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">switch</span>(from) {</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'c'</span>:</div>
+                    <div class="code-line">      c = input;</div>
+                    <div class="code-line">      f = (c * 9/5) + 32;</div>
+                    <div class="code-line">      k = c + 273.15;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'f'</span>:</div>
+                    <div class="code-line">      f = input;</div>
+                    <div class="code-line">      c = (f - 32) * 5/9;</div>
+                    <div class="code-line">      k = c + 273.15;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'k'</span>:</div>
+                    <div class="code-line">      k = input;</div>
+                    <div class="code-line">      c = k - 273.15;</div>
+                    <div class="code-line">      f = (c * 9/5) + 32;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">  }</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'temp-c'</span>).textContent = c.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'temp-f'</span>).textContent = f.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'temp-k'</span>).textContent = k.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">}</div>
+                </div>
+                
+                <div class="code-explanation">
+                    <p><strong>Как работает функция:</strong></p>
+                    <ol>
+                        <li><code>parseFloat()</code> преобразует строку в число</li>
+                        <li><code>switch</code> выбирает нужные формулы конвертации</li>
+                        <li>Всегда считаем через промежуточное значение в °C</li>
+                        <li><code>toFixed(2)</code> показывает результат с 2 знаками после запятой</li>
+                    </ol>
+                </div>
+            </section>
+
             <!-- раздел 4: КОНВЕРТЕР ДЛИНЫ -->
             <section>
                 <section>
@@ -704,6 +825,43 @@
                 </section>
             </section>
 
+                        <!-- СЛАЙД С КОДОМ КОНВЕРТЕРА ДЛИНЫ -->
+            <section class="code-slide">
+                <h3>JavaScript код: функция convertLength()</h3>
+                <div class="code-container">
+                    <div class="code-line"><span class="code-keyword">function</span> <span class="code-function">convertLength</span>() {</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> input = <span class="code-function">parseFloat</span>(<span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-input'</span>).value);</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> from = <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-from'</span>).value;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">let</span> m, km, mile, ft;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">switch</span>(from) {</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'m'</span>:</div>
+                    <div class="code-line">      m = input;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'km'</span>:</div>
+                    <div class="code-line">      m = input * 1000;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'mile'</span>:</div>
+                    <div class="code-line">      m = input * 1609.34;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'ft'</span>:</div>
+                    <div class="code-line">      m = input * 0.3048;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">  }</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  km = m / 1000;</div>
+                    <div class="code-line">  mile = m / 1609.34;</div>
+                    <div class="code-line">  ft = m / 0.3048;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-m'</span>).textContent = m.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-km'</span>).textContent = km.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-mile'</span>).textContent = mile.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'length-ft'</span>).textContent = ft.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">}</div>
+                </div>
+            </section>
+
             <!-- раздел 5: КОНВЕРТЕР МАССЫ -->
             <section>
                 <section>
@@ -758,6 +916,43 @@
                         </div>
                     </div>
                 </section>
+            </section>
+
+                        <!-- СЛАЙД С КОДОМ КОНВЕРТЕРА МАССЫ -->
+            <section class="code-slide">
+                <h3>JavaScript код: функция convertMass()</h3>
+                <div class="code-container">
+                    <div class="code-line"><span class="code-keyword">function</span> <span class="code-function">convertMass</span>() {</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> input = <span class="code-function">parseFloat</span>(<span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-input'</span>).value);</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> from = <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-from'</span>).value;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">let</span> kg, g, lb, oz;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">switch</span>(from) {</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'kg'</span>:</div>
+                    <div class="code-line">      kg = input;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'g'</span>:</div>
+                    <div class="code-line">      kg = input / 1000;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'lb'</span>:</div>
+                    <div class="code-line">      kg = input * 0.453592;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'oz'</span>:</div>
+                    <div class="code-line">      kg = input * 0.0283495;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">  }</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  g = kg * 1000;</div>
+                    <div class="code-line">  lb = kg / 0.453592;</div>
+                    <div class="code-line">  oz = kg / 0.0283495;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-kg'</span>).textContent = kg.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-g'</span>).textContent = g.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-lb'</span>).textContent = lb.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'mass-oz'</span>).textContent = oz.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">}</div>
+                </div>
             </section>
 
             <!-- раздел 6: КОНВЕРТЕР СКОРОСТИ -->
@@ -820,6 +1015,43 @@
                         <p>Используется в морской и авиационной навигации</p>
                     </div>
                 </section>
+            </section>
+
+                        <!-- СЛАЙД С КОДОМ КОНВЕРТЕРА СКОРОСТИ -->
+            <section class="code-slide">
+                <h3>JavaScript код: функция convertSpeed()</h3>
+                <div class="code-container">
+                    <div class="code-line"><span class="code-keyword">function</span> <span class="code-function">convertSpeed</span>() {</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> input = <span class="code-function">parseFloat</span>(<span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-input'</span>).value);</div>
+                    <div class="code-line">  <span class="code-keyword">const</span> from = <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-from'</span>).value;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">let</span> ms, kmh, mph, knot;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="code-keyword">switch</span>(from) {</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'ms'</span>:</div>
+                    <div class="code-line">      ms = input;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'kmh'</span>:</div>
+                    <div class="code-line">      ms = input / 3.6;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'mph'</span>:</div>
+                    <div class="code-line">      ms = input * 0.44704;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">    <span class="code-keyword">case</span> <span class="string">'knot'</span>:</div>
+                    <div class="code-line">      ms = input * 0.514444;</div>
+                    <div class="code-line">      <span class="code-keyword">break</span>;</div>
+                    <div class="code-line">  }</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  kmh = ms * 3.6;</div>
+                    <div class="code-line">  mph = ms / 0.44704;</div>
+                    <div class="code-line">  knot = ms / 0.514444;</div>
+                    <div class="code-line">  </div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-ms'</span>).textContent = ms.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-kmh'</span>).textContent = kmh.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-mph'</span>).textContent = mph.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">  <span class="function">document</span>.<span class="function">getElementById</span>(<span class="string">'speed-knot'</span>).textContent = knot.<span class="function">toFixed</span>(<span class="number">2</span>);</div>
+                    <div class="code-line">}</div>
+                </div>
             </section>
 
             <!-- раздел 7: ВЕСЁЛЫЕ КАРТИНКИ -->
